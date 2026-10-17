@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GRILL HOUSE | Burger & Cafe</title>
+  <title>GRILL HOUSE | BURGER & CAFE</title>
 
   <style>
     * {
@@ -28,7 +28,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(17, 17, 17, 0.95);
+      background: rgba(17, 17, 17, 0.96);
       padding: 20px 7%;
       display: flex;
       justify-content: space-between;
@@ -42,10 +42,14 @@
       letter-spacing: 2px;
     }
 
+    nav {
+      display: flex;
+      gap: 25px;
+    }
+
     nav a {
-      color: #fff;
+      color: white;
       text-decoration: none;
-      margin-left: 24px;
       transition: color 0.3s;
     }
 
@@ -55,24 +59,24 @@
 
     /* メインビジュアル */
     .hero {
-      min-height: 550px;
+      min-height: 520px;
       display: flex;
       align-items: center;
-      padding: 80px 8%;
+      padding: 70px 8%;
       background:
-        linear-gradient(90deg, rgba(0,0,0,.85), rgba(0,0,0,.2)),
+        linear-gradient(90deg, rgba(0,0,0,.8), rgba(0,0,0,.1)),
         url("https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1800")
         center/cover no-repeat;
     }
 
     .hero-content {
-      max-width: 600px;
+      max-width: 650px;
     }
 
     .hero h1 {
-      font-size: clamp(38px, 7vw, 76px);
-      line-height: 1.15;
-      margin-bottom: 24px;
+      font-size: clamp(42px, 7vw, 78px);
+      line-height: 1.12;
+      margin-bottom: 25px;
     }
 
     .hero h1 span {
@@ -80,16 +84,15 @@
     }
 
     .hero p {
-      font-size: 17px;
-      line-height: 1.9;
+      line-height: 2;
       margin-bottom: 30px;
     }
 
     .btn {
       display: inline-block;
-      padding: 15px 32px;
       background: #ffb000;
       color: #111;
+      padding: 15px 30px;
       text-decoration: none;
       font-weight: bold;
       border-radius: 5px;
@@ -97,8 +100,88 @@
     }
 
     .btn:hover {
-      background: #fff;
+      background: white;
       transform: translateY(-3px);
+    }
+
+    /* 大きな写真の自動スライダー */
+    .big-slider {
+      position: relative;
+      width: 100%;
+      height: min(600px, 65vw);
+      min-height: 300px;
+      overflow: hidden;
+      background: #222;
+    }
+
+    .big-slider-track {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      animation: bigPhotoSlide 18s infinite;
+    }
+
+    .big-slide {
+      position: relative;
+      flex: 0 0 100%;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .big-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .big-slide::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        0deg,
+        rgba(0,0,0,.7),
+        transparent 65%
+      );
+      pointer-events: none;
+    }
+
+    .slide-caption {
+      position: absolute;
+      z-index: 1;
+      left: 8%;
+      bottom: 35px;
+      font-size: clamp(26px, 5vw, 55px);
+      font-weight: bold;
+      text-shadow: 0 2px 12px #000;
+    }
+
+    .slide-caption span {
+      display: block;
+      color: #ffb000;
+      font-size: 14px;
+      letter-spacing: 4px;
+      margin-bottom: 8px;
+    }
+
+    @keyframes bigPhotoSlide {
+      0%, 27% {
+        transform: translateX(0);
+      }
+
+      33%, 60% {
+        transform: translateX(-100%);
+      }
+
+      66%, 93% {
+        transform: translateX(-200%);
+      }
+
+      100% {
+        transform: translateX(0);
+      }
     }
 
     /* メニューセクション */
@@ -111,27 +194,28 @@
 
     .section-label {
       color: #ffb000;
-      letter-spacing: 4px;
       font-size: 13px;
-      margin-bottom: 10px;
+      letter-spacing: 4px;
+      margin-bottom: 12px;
     }
 
     .menu-section h2,
     .about h2 {
       font-size: clamp(30px, 5vw, 44px);
-      margin-bottom: 12px;
+      margin-bottom: 15px;
     }
 
     .section-description {
       color: #bbb;
       margin-bottom: 35px;
       padding: 0 20px;
+      line-height: 1.8;
     }
 
-    /* 自動横スクロール */
+    /* メニューの自動横スライド */
     .menu-slider {
-      overflow: hidden;
       width: 100%;
+      overflow: hidden;
       padding: 10px 0 25px;
     }
 
@@ -139,7 +223,7 @@
       display: flex;
       gap: 24px;
       width: max-content;
-      animation: menuSlide 18s infinite;
+      animation: menuSlide 24s infinite;
     }
 
     .menu-slider:hover .menu-track {
@@ -156,7 +240,7 @@
     }
 
     .menu-card:hover {
-      transform: translateY(-8px);
+      transform: translateY(-6px);
     }
 
     .menu-card img {
@@ -171,14 +255,15 @@
     }
 
     .menu-info h3 {
-      font-size: 21px;
-      margin-bottom: 10px;
+      font-size: 20px;
+      margin-bottom: 12px;
     }
 
     .menu-info p {
       color: #bbb;
       font-size: 14px;
       line-height: 1.8;
+      min-height: 50px;
       margin-bottom: 15px;
     }
 
@@ -188,18 +273,25 @@
       font-weight: bold;
     }
 
-    /* 3枚分ずつ移動して、最初に戻る */
     @keyframes menuSlide {
-      0%, 20% {
+      0%, 15% {
         transform: translateX(0);
       }
 
-      30%, 50% {
+      20%, 35% {
+        transform: translateX(-324px);
+      }
+
+      40%, 55% {
+        transform: translateX(-648px);
+      }
+
+      60%, 75% {
         transform: translateX(-972px);
       }
 
-      60%, 80% {
-        transform: translateX(-1944px);
+      80%, 95% {
+        transform: translateX(-1296px);
       }
 
       100% {
@@ -209,12 +301,12 @@
 
     /* お店紹介 */
     .about {
-      padding: 80px 8%;
+      padding: 85px 8%;
       text-align: center;
     }
 
     .about p {
-      max-width: 650px;
+      max-width: 700px;
       margin: 20px auto 30px;
       color: #ccc;
       line-height: 2;
@@ -222,18 +314,18 @@
 
     /* 店舗情報 */
     .info {
-      padding: 50px 8%;
+      padding: 60px 8%;
       background: #1c1c1c;
       text-align: center;
     }
 
     .info h2 {
-      margin-bottom: 20px;
+      margin-bottom: 25px;
     }
 
     .info p {
       color: #ccc;
-      line-height: 2;
+      line-height: 2.2;
     }
 
     footer {
@@ -243,7 +335,7 @@
       font-size: 13px;
     }
 
-    /* スマホ対応 */
+    /* スマートフォン */
     @media (max-width: 600px) {
       header {
         padding: 18px 5%;
@@ -251,14 +343,21 @@
         gap: 15px;
       }
 
+      nav {
+        gap: 15px;
+      }
+
       nav a {
-        margin: 0 8px;
-        font-size: 13px;
+        font-size: 12px;
       }
 
       .hero {
-        min-height: 480px;
-        padding: 60px 7%;
+        min-height: 440px;
+        padding: 55px 7%;
+      }
+
+      .big-slider {
+        height: 320px;
       }
 
       .menu-card {
@@ -266,25 +365,32 @@
       }
 
       .menu-card img {
-        height: 190px;
+        height: 180px;
       }
 
       .menu-track {
         gap: 16px;
       }
 
-      /* スマホではカード幅250px＋間隔16px */
       @keyframes menuSlide {
-        0%, 20% {
+        0%, 15% {
           transform: translateX(0);
         }
 
-        30%, 50% {
+        20%, 35% {
+          transform: translateX(-266px);
+        }
+
+        40%, 55% {
+          transform: translateX(-532px);
+        }
+
+        60%, 75% {
           transform: translateX(-798px);
         }
 
-        60%, 80% {
-          transform: translateX(-1596px);
+        80%, 95% {
+          transform: translateX(-1064px);
         }
 
         100% {
@@ -293,8 +399,9 @@
       }
     }
 
-    /* 動きを減らしたい設定の人には停止 */
+    /* 動きを減らす設定 */
     @media (prefers-reduced-motion: reduce) {
+      .big-slider-track,
       .menu-track {
         animation: none;
       }
@@ -337,18 +444,57 @@
     </div>
   </section>
 
-  <!-- メニュー -->
+  <!-- 大きな写真が自動で横に流れる部分 -->
+  <section class="big-slider" aria-label="おすすめ商品の写真">
+    <div class="big-slider-track">
+
+      <div class="big-slide">
+        <img
+          src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1600"
+          alt="ジューシーなチーズバーガー"
+        >
+        <div class="slide-caption">
+          <span>OUR SIGNATURE</span>
+          SPECIAL BURGER
+        </div>
+      </div>
+
+      <div class="big-slide">
+        <img
+          src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=1600"
+          alt="ボリュームのあるバーガー"
+        >
+        <div class="slide-caption">
+          <span>FRESH & JUICY</span>
+          CHEESE BURGER
+        </div>
+      </div>
+
+      <div class="big-slide">
+        <img
+          src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=1600"
+          alt="フライドポテト"
+        >
+        <div class="slide-caption">
+          <span>PERFECT SIDE</span>
+          SIDE MENU
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- セットメニューの自動スライド -->
   <section class="menu-section" id="menu">
     <p class="section-label">OUR MENU</p>
-    <h2>人気のセットメニュー</h2>
+    <h2>SET MENU</h2>
     <p class="section-description">
-      時間がたつと自動で横にスライドするよ！
+      GRILL HOUSEおすすめのセットメニュー
     </p>
 
     <div class="menu-slider">
       <div class="menu-track">
 
-        <!-- 1 -->
         <article class="menu-card">
           <img
             src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600"
@@ -356,29 +502,27 @@
           >
           <div class="menu-info">
             <h3>チーズバーガーセット</h3>
-            <p>ジューシーなパティと濃厚チーズ。ポテトとドリンク付き。</p>
+            <p>濃厚チーズとジューシーなパティ。ポテトとドリンク付き。</p>
             <div class="price">¥1,200</div>
           </div>
         </article>
 
-        <!-- 2 -->
         <article class="menu-card">
           <img
             src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=600"
-            alt="フライドポテト"
+            alt="ポテトセット"
           >
           <div class="menu-info">
-            <h3>ポテト＆ドリンクセット</h3>
-            <p>サクサクのフライドポテトと冷たいドリンクのセット。</p>
+            <h3>ポテトセット</h3>
+            <p>サクサクのポテトとお好きなドリンクを楽しめるセット。</p>
             <div class="price">¥800</div>
           </div>
         </article>
 
-        <!-- 3 -->
         <article class="menu-card">
           <img
             src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=600"
-            alt="チキンバーガー"
+            alt="チキンバーガーセット"
           >
           <div class="menu-info">
             <h3>チキンバーガーセット</h3>
@@ -387,20 +531,18 @@
           </div>
         </article>
 
-        <!-- 4 -->
         <article class="menu-card">
           <img
             src="https://images.unsplash.com/photo-1553979459-d2229ba7433a?w=600"
-            alt="ダブルバーガー"
+            alt="ダブルバーガーセット"
           >
           <div class="menu-info">
             <h3>ダブルバーガーセット</h3>
-            <p>ボリューム満点！お肉をたっぷり楽しみたい方に。</p>
+            <p>ボリューム満点。お肉をたっぷり楽しみたい方に。</p>
             <div class="price">¥1,500</div>
           </div>
         </article>
 
-        <!-- 5 -->
         <article class="menu-card">
           <img
             src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=600"
@@ -434,6 +576,7 @@
   <!-- 店舗情報 -->
   <section class="info" id="info">
     <h2>店舗情報</h2>
+
     <p>
       店名：GRILL HOUSE<br>
       営業時間：11:00〜21:00<br>
