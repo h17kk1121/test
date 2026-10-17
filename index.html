@@ -7,6 +7,9 @@
   <title>GRILL HOUSE | BURGER & CAFE</title>
 
   <style>
+    /* =========================
+       基本設定
+    ========================= */
     * {
       margin: 0;
       padding: 0;
@@ -15,41 +18,59 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 85px;
     }
 
     body {
       font-family: Arial, "Noto Sans JP", sans-serif;
       background: #111;
       color: #fff;
+      overflow-x: hidden;
     }
 
-    /* ヘッダー */
+    img {
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    /* =========================
+       ヘッダー
+    ========================= */
     header {
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 1000;
       background: rgba(17, 17, 17, 0.96);
+      backdrop-filter: blur(10px);
       padding: 20px 7%;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      border-bottom: 1px solid #292929;
     }
 
     .logo {
       color: #ffb000;
       font-size: 25px;
-      font-weight: bold;
+      font-weight: 900;
       letter-spacing: 2px;
+      text-decoration: none;
+      white-space: nowrap;
     }
 
     nav {
       display: flex;
-      gap: 25px;
+      align-items: center;
+      gap: 28px;
     }
 
     nav a {
-      color: white;
+      color: #fff;
       text-decoration: none;
+      font-size: 14px;
       transition: color 0.3s;
     }
 
@@ -57,26 +78,51 @@
       color: #ffb000;
     }
 
-    /* メインビジュアル */
+    .menu-toggle {
+      display: none;
+      background: none;
+      color: white;
+      border: 1px solid #555;
+      border-radius: 5px;
+      padding: 8px 12px;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    /* =========================
+       メインビジュアル
+    ========================= */
     .hero {
-      min-height: 520px;
+      min-height: 600px;
       display: flex;
       align-items: center;
-      padding: 70px 8%;
+      padding: 90px 8%;
       background:
-        linear-gradient(90deg, rgba(0,0,0,.8), rgba(0,0,0,.1)),
+        linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0.88),
+          rgba(0, 0, 0, 0.15)
+        ),
         url("https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1800")
-        center/cover no-repeat;
+        center / cover no-repeat;
     }
 
     .hero-content {
       max-width: 650px;
     }
 
+    .hero-label {
+      color: #ffb000;
+      letter-spacing: 5px;
+      font-size: 13px;
+      margin-bottom: 22px;
+    }
+
     .hero h1 {
-      font-size: clamp(42px, 7vw, 78px);
-      line-height: 1.12;
+      font-size: clamp(42px, 7vw, 82px);
+      line-height: 1.1;
       margin-bottom: 25px;
+      font-weight: 900;
     }
 
     .hero h1 span {
@@ -85,97 +131,101 @@
 
     .hero p {
       line-height: 2;
-      margin-bottom: 30px;
+      color: #eee;
+      margin-bottom: 32px;
+      font-size: 16px;
     }
 
     .btn {
       display: inline-block;
+      padding: 15px 32px;
       background: #ffb000;
       color: #111;
-      padding: 15px 30px;
-      text-decoration: none;
       font-weight: bold;
+      text-decoration: none;
       border-radius: 5px;
-      transition: 0.3s;
+      transition: transform 0.3s, background 0.3s;
     }
 
     .btn:hover {
       background: white;
-      transform: translateY(-3px);
+      transform: translateY(-4px);
     }
 
-    /* 大きな写真の自動スライダー */
-    .big-slider {
+    /* =========================
+       大きな写真の横スライダー
+       1枚ずつ横に移動して画面外へ
+    ========================= */
+    .visual-slider {
       position: relative;
       width: 100%;
-      height: min(600px, 65vw);
-      min-height: 300px;
+      height: clamp(320px, 48vw, 620px);
       overflow: hidden;
       background: #222;
     }
 
-    .big-slider-track {
+    .visual-track {
       display: flex;
-      width: 100%;
       height: 100%;
-      animation: bigPhotoSlide 18s infinite;
+      width: 100%;
+      animation: visualSlide 21s infinite;
     }
 
-    .big-slide {
-      position: relative;
+    .visual-slide {
       flex: 0 0 100%;
       width: 100%;
       height: 100%;
+      position: relative;
       overflow: hidden;
     }
 
-    .big-slide img {
-      display: block;
+    .visual-slide img {
       width: 100%;
       height: 100%;
+      display: block;
       object-fit: cover;
     }
 
-    .big-slide::after {
+    .visual-slide::after {
       content: "";
       position: absolute;
       inset: 0;
       background: linear-gradient(
         0deg,
-        rgba(0,0,0,.7),
+        rgba(0, 0, 0, 0.75),
         transparent 65%
       );
       pointer-events: none;
     }
 
-    .slide-caption {
+    .visual-caption {
       position: absolute;
-      z-index: 1;
+      z-index: 2;
       left: 8%;
-      bottom: 35px;
-      font-size: clamp(26px, 5vw, 55px);
-      font-weight: bold;
-      text-shadow: 0 2px 12px #000;
+      bottom: 40px;
+      font-size: clamp(28px, 5vw, 60px);
+      font-weight: 900;
+      text-shadow: 0 2px 15px #000;
     }
 
-    .slide-caption span {
+    .visual-caption small {
       display: block;
       color: #ffb000;
-      font-size: 14px;
-      letter-spacing: 4px;
-      margin-bottom: 8px;
+      font-size: 13px;
+      letter-spacing: 5px;
+      margin-bottom: 10px;
     }
 
-    @keyframes bigPhotoSlide {
-      0%, 27% {
+    @keyframes visualSlide {
+      0%, 25% {
         transform: translateX(0);
       }
 
-      33%, 60% {
+      31%, 56% {
         transform: translateX(-100%);
       }
 
-      66%, 93% {
+      62%, 87% {
         transform: translateX(-200%);
       }
 
@@ -184,74 +234,80 @@
       }
     }
 
-    /* メニューセクション */
-    .menu-section {
-      padding: 80px 0;
-      overflow: hidden;
-      background: #171717;
-      text-align: center;
-    }
-
+    /* =========================
+       共通セクションタイトル
+    ========================= */
     .section-label {
       color: #ffb000;
       font-size: 13px;
-      letter-spacing: 4px;
+      letter-spacing: 5px;
       margin-bottom: 12px;
     }
 
-    .menu-section h2,
-    .about h2 {
-      font-size: clamp(30px, 5vw, 44px);
+    .section-title {
+      font-size: clamp(30px, 5vw, 46px);
       margin-bottom: 15px;
     }
 
     .section-description {
-      color: #bbb;
-      margin-bottom: 35px;
-      padding: 0 20px;
+      color: #aaa;
       line-height: 1.8;
+      margin-bottom: 35px;
     }
 
-    /* メニューの自動横スライド */
+    /* =========================
+       セットメニュー
+    ========================= */
+    .menu-section {
+      padding: 90px 0 85px;
+      text-align: center;
+      background: #171717;
+      overflow: hidden;
+    }
+
     .menu-slider {
       width: 100%;
       overflow: hidden;
-      padding: 10px 0 25px;
+      padding: 12px 0 30px;
     }
 
     .menu-track {
       display: flex;
       gap: 24px;
       width: max-content;
-      animation: menuSlide 24s infinite;
+      animation: menuSlide 25s infinite;
+      will-change: transform;
     }
 
-    .menu-slider:hover .menu-track {
+    .menu-slider:hover .menu-track,
+    .menu-slider:focus-within .menu-track {
       animation-play-state: paused;
     }
 
     .menu-card {
       flex: 0 0 300px;
       background: #242424;
-      border-radius: 14px;
+      border: 1px solid #333;
+      border-radius: 12px;
       overflow: hidden;
       text-align: left;
-      transition: transform 0.3s;
+      transition: transform 0.3s, border-color 0.3s;
     }
 
     .menu-card:hover {
-      transform: translateY(-6px);
+      transform: translateY(-7px);
+      border-color: #ffb000;
     }
 
     .menu-card img {
-      display: block;
       width: 100%;
       height: 220px;
+      display: block;
       object-fit: cover;
     }
 
     .menu-info {
-      padding: 22px;
+      padding: 23px;
     }
 
     .menu-info h3 {
@@ -262,36 +318,46 @@
     .menu-info p {
       color: #bbb;
       font-size: 14px;
-      line-height: 1.8;
-      min-height: 50px;
+      line-height: 1.9;
+      min-height: 54px;
       margin-bottom: 15px;
     }
 
     .price {
       color: #ffb000;
-      font-size: 24px;
+      font-size: 25px;
       font-weight: bold;
     }
 
+    .menu-note {
+      font-size: 12px;
+      color: #888;
+      margin-top: 10px;
+    }
+
     @keyframes menuSlide {
-      0%, 15% {
+      0%, 12% {
         transform: translateX(0);
       }
 
-      20%, 35% {
+      18%, 30% {
         transform: translateX(-324px);
       }
 
-      40%, 55% {
+      36%, 48% {
         transform: translateX(-648px);
       }
 
-      60%, 75% {
+      54%, 66% {
         transform: translateX(-972px);
       }
 
-      80%, 95% {
+      72%, 84% {
         transform: translateX(-1296px);
+      }
+
+      90%, 96% {
+        transform: translateX(-1620px);
       }
 
       100% {
@@ -299,115 +365,248 @@
       }
     }
 
-    /* お店紹介 */
+    /* =========================
+       お店のこだわり
+    ========================= */
     .about {
-      padding: 85px 8%;
+      padding: 100px 8%;
       text-align: center;
+      background: #111;
     }
 
-    .about p {
-      max-width: 700px;
-      margin: 20px auto 30px;
-      color: #ccc;
-      line-height: 2;
+    .about-inner {
+      max-width: 800px;
+      margin: 0 auto;
     }
 
-    /* 店舗情報 */
-    .info {
-      padding: 60px 8%;
-      background: #1c1c1c;
-      text-align: center;
-    }
-
-    .info h2 {
-      margin-bottom: 25px;
-    }
-
-    .info p {
+    .about p.description {
       color: #ccc;
       line-height: 2.2;
+      margin: 25px auto 32px;
     }
 
+    .about-points {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin: 45px 0;
+    }
+
+    .about-point {
+      padding: 25px 15px;
+      border: 1px solid #333;
+      border-radius: 10px;
+      background: #191919;
+    }
+
+    .about-point .number {
+      color: #ffb000;
+      font-size: 30px;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .about-point h3 {
+      margin-bottom: 10px;
+      font-size: 17px;
+    }
+
+    .about-point p {
+      color: #aaa;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    /* =========================
+       店舗情報
+    ========================= */
+    .info {
+      padding: 80px 8%;
+      text-align: center;
+      background: #1b1b1b;
+    }
+
+    .info-content {
+      max-width: 650px;
+      margin: 30px auto 0;
+      padding: 30px;
+      border: 1px solid #383838;
+      border-radius: 10px;
+      background: #202020;
+      line-height: 2.2;
+      color: #ccc;
+    }
+
+    .info-content strong {
+      color: white;
+    }
+
+    /* =========================
+       フッター
+    ========================= */
     footer {
-      padding: 25px;
+      padding: 30px 20px;
       text-align: center;
       color: #888;
       font-size: 13px;
     }
 
-    /* スマートフォン */
-    @media (max-width: 600px) {
+    footer .footer-logo {
+      font-size: 20px;
+      font-weight: bold;
+      color: #ffb000;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    /* =========================
+       スクロール時の表示アニメーション
+    ========================= */
+    .reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================
+       スマホ対応
+    ========================= */
+    @media (max-width: 700px) {
       header {
-        padding: 18px 5%;
-        flex-direction: column;
-        gap: 15px;
+        padding: 17px 5%;
+      }
+
+      .logo {
+        font-size: 21px;
+      }
+
+      .menu-toggle {
+        display: block;
       }
 
       nav {
-        gap: 15px;
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #171717;
+        border-top: 1px solid #333;
+        padding: 20px;
+        flex-direction: column;
+        align-items: center;
+        gap: 22px;
       }
 
-      nav a {
-        font-size: 12px;
+      nav.open {
+        display: flex;
       }
 
       .hero {
-        min-height: 440px;
-        padding: 55px 7%;
+        min-height: 480px;
+        padding: 60px 7%;
+        background-position: 58% center;
       }
 
-      .big-slider {
-        height: 320px;
+      .hero h1 {
+        font-size: clamp(38px, 10vw, 60px);
+      }
+
+      .visual-slider {
+        height: 340px;
+      }
+
+      .visual-caption {
+        left: 6%;
+        bottom: 25px;
+      }
+
+      .menu-section {
+        padding: 65px 0;
       }
 
       .menu-card {
-        flex-basis: 250px;
+        flex-basis: 260px;
       }
 
       .menu-card img {
-        height: 180px;
+        height: 190px;
       }
 
       .menu-track {
         gap: 16px;
       }
 
+      /* スマホ用カード幅260px + 間隔16px */
       @keyframes menuSlide {
-        0%, 15% {
+        0%, 12% {
           transform: translateX(0);
         }
 
-        20%, 35% {
-          transform: translateX(-266px);
+        18%, 30% {
+          transform: translateX(-276px);
         }
 
-        40%, 55% {
-          transform: translateX(-532px);
+        36%, 48% {
+          transform: translateX(-552px);
         }
 
-        60%, 75% {
-          transform: translateX(-798px);
+        54%, 66% {
+          transform: translateX(-828px);
         }
 
-        80%, 95% {
-          transform: translateX(-1064px);
+        72%, 84% {
+          transform: translateX(-1104px);
+        }
+
+        90%, 96% {
+          transform: translateX(-1380px);
         }
 
         100% {
           transform: translateX(0);
         }
       }
-    }
 
-    /* 動きを減らす設定 */
-    @media (prefers-reduced-motion: reduce) {
-      .big-slider-track,
-      .menu-track {
-        animation: none;
+      .about {
+        padding: 70px 6%;
       }
 
-      html {
-        scroll-behavior: auto;
+      .about-points {
+        grid-template-columns: 1fr;
+      }
+
+      .info {
+        padding: 65px 6%;
+      }
+
+      .info-content {
+        padding: 22px 15px;
+      }
+    }
+
+    /* 動きを減らす設定が有効な場合 */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+      }
+
+      .visual-track,
+      .menu-track {
+        animation: none !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
       }
     }
   </style>
@@ -415,11 +614,22 @@
 
 <body>
 
-  <!-- ヘッダー -->
+  <!-- =========================
+       ヘッダー
+  ========================= -->
   <header>
-    <div class="logo">GRILL HOUSE</div>
+    <a href="#home" class="logo">GRILL HOUSE</a>
 
-    <nav>
+    <button
+      class="menu-toggle"
+      aria-label="ナビゲーションを開く"
+      aria-expanded="false"
+      aria-controls="main-nav"
+    >
+      ☰
+    </button>
+
+    <nav id="main-nav">
       <a href="#home">HOME</a>
       <a href="#menu">MENU</a>
       <a href="#about">ABOUT</a>
@@ -427,168 +637,291 @@
     </nav>
   </header>
 
-  <!-- メインビジュアル -->
-  <section class="hero" id="home">
-    <div class="hero-content">
-      <h1>
-        TASTE THE<br>
-        <span>REAL BURGER.</span>
-      </h1>
+  <main>
 
-      <p>
-        こだわりの肉、新鮮な野菜、焼きたてのバンズ。<br>
-        最高のバーガー体験をあなたに。
+    <!-- =========================
+         メインビジュアル
+    ========================= -->
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <p class="hero-label">FRESH · JUICY · DELICIOUS</p>
+
+        <h1>
+          TASTE THE<br>
+          <span>REAL BURGER.</span>
+        </h1>
+
+        <p>
+          こだわりの肉、新鮮な野菜、焼きたてのバンズ。<br>
+          ひと口で笑顔になる、最高のバーガー体験をあなたに。
+        </p>
+
+        <a href="#menu" class="btn">メニューを見る →</a>
+      </div>
+    </section>
+
+    <!-- =========================
+         大きな写真の自動スライダー
+    ========================= -->
+    <section class="visual-slider" aria-label="おすすめメニューの写真">
+      <div class="visual-track">
+
+        <div class="visual-slide">
+          <img
+            src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1600"
+            alt="チーズバーガー"
+          >
+          <div class="visual-caption">
+            <small>OUR SIGNATURE</small>
+            SPECIAL BURGER
+          </div>
+        </div>
+
+        <div class="visual-slide">
+          <img
+            src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=1600"
+            alt="ボリュームたっぷりのバーガー"
+          >
+          <div class="visual-caption">
+            <small>FRESH & JUICY</small>
+            CHEESE BURGER
+          </div>
+        </div>
+
+        <div class="visual-slide">
+          <img
+            src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=1600"
+            alt="フライドポテト"
+          >
+          <div class="visual-caption">
+            <small>PERFECT SIDE</small>
+            SIDE MENU
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================
+         セットメニューの自動スライダー
+    ========================= -->
+    <section class="menu-section" id="menu">
+      <div class="reveal">
+        <p class="section-label">OUR MENU</p>
+        <h2 class="section-title">SET MENU</h2>
+        <p class="section-description">
+          こだわりのバーガーと、おいしいサイドメニュー。
+        </p>
+      </div>
+
+      <div class="menu-slider">
+        <div class="menu-track">
+
+          <article class="menu-card">
+            <img
+              src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=700"
+              alt="チーズバーガーセット"
+            >
+            <div class="menu-info">
+              <h3>チーズバーガーセット</h3>
+              <p>濃厚チーズとジューシーなパティ。ポテトとドリンク付き。</p>
+              <div class="price">¥1,200</div>
+            </div>
+          </article>
+
+          <article class="menu-card">
+            <img
+              src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=700"
+              alt="ポテトセット"
+            >
+            <div class="menu-info">
+              <h3>ポテトセット</h3>
+              <p>サクサクのポテトとドリンクを楽しめる定番セット。</p>
+              <div class="price">¥800</div>
+            </div>
+          </article>
+
+          <article class="menu-card">
+            <img
+              src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=700"
+              alt="チキンバーガーセット"
+            >
+            <div class="menu-info">
+              <h3>チキンバーガーセット</h3>
+              <p>香ばしいチキンと新鮮な野菜を挟んだ人気メニュー。</p>
+              <div class="price">¥1,000</div>
+            </div>
+          </article>
+
+          <article class="menu-card">
+            <img
+              src="https://images.unsplash.com/photo-1553979459-d2229ba7433a?w=700"
+              alt="ダブルバーガーセット"
+            >
+            <div class="menu-info">
+              <h3>ダブルバーガーセット</h3>
+              <p>お肉をたっぷり楽しみたい方におすすめの一品。</p>
+              <div class="price">¥1,500</div>
+            </div>
+          </article>
+
+          <article class="menu-card">
+            <img
+              src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=700"
+              alt="スペシャルバーガー"
+            >
+            <div class="menu-info">
+              <h3>スペシャルバーガー</h3>
+              <p>お店自慢のソースで仕上げた特製バーガー。</p>
+              <div class="price">¥1,350</div>
+            </div>
+          </article>
+
+          <article class="menu-card">
+            <img
+              src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=700"
+              alt="グリルハウスおすすめバーガー"
+            >
+            <div class="menu-info">
+              <h3>グリルハウスバーガー</h3>
+              <p>お店のこだわりを詰め込んだおすすめのバーガー。</p>
+              <div class="price">¥1,400</div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <p class="menu-note">
+        ※ 表示価格・商品名はサンプルです。
       </p>
+    </section>
 
-      <a href="#menu" class="btn">メニューを見る →</a>
-    </div>
-  </section>
+    <!-- =========================
+         お店のこだわり
+    ========================= -->
+    <section class="about" id="about">
+      <div class="about-inner reveal">
+        <p class="section-label">ABOUT US</p>
+        <h2 class="section-title">おいしさへのこだわり</h2>
 
-  <!-- 大きな写真が自動で横に流れる部分 -->
-  <section class="big-slider" aria-label="おすすめ商品の写真">
-    <div class="big-slider-track">
+        <p class="description">
+          GRILL HOUSEは、素材と焼き方にこだわったバーガーショップ。
+          注文を受けてから丁寧に焼き上げ、できたてのおいしさをお届けします。
+          友達とのランチにも、家族でのお食事にもぜひご利用ください。
+        </p>
 
-      <div class="big-slide">
-        <img
-          src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1600"
-          alt="ジューシーなチーズバーガー"
-        >
-        <div class="slide-caption">
-          <span>OUR SIGNATURE</span>
-          SPECIAL BURGER
+        <div class="about-points">
+          <div class="about-point">
+            <div class="number">01</div>
+            <h3>FRESH INGREDIENTS</h3>
+            <p>新鮮な食材を使った、こだわりの味。</p>
+          </div>
+
+          <div class="about-point">
+            <div class="number">02</div>
+            <h3>MADE TO ORDER</h3>
+            <p>注文を受けてから丁寧に調理。</p>
+          </div>
+
+          <div class="about-point">
+            <div class="number">03</div>
+            <h3>BEST EXPERIENCE</h3>
+            <p>何度でも食べたくなるおいしさを。</p>
+          </div>
+        </div>
+
+        <a href="#info" class="btn">店舗情報を見る →</a>
+      </div>
+    </section>
+
+    <!-- =========================
+         店舗情報
+    ========================= -->
+    <section class="info" id="info">
+      <div class="reveal">
+        <p class="section-label">INFORMATION</p>
+        <h2 class="section-title">店舗情報</h2>
+
+        <div class="info-content">
+          <p>
+            <strong>GRILL HOUSE</strong><br>
+            営業時間：11:00〜21:00<br>
+            定休日：火曜日<br>
+            住所：東京都渋谷区〇〇 1-2-3
+          </p>
         </div>
       </div>
+    </section>
 
-      <div class="big-slide">
-        <img
-          src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=1600"
-          alt="ボリュームのあるバーガー"
-        >
-        <div class="slide-caption">
-          <span>FRESH & JUICY</span>
-          CHEESE BURGER
-        </div>
-      </div>
+  </main>
 
-      <div class="big-slide">
-        <img
-          src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=1600"
-          alt="フライドポテト"
-        >
-        <div class="slide-caption">
-          <span>PERFECT SIDE</span>
-          SIDE MENU
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- セットメニューの自動スライド -->
-  <section class="menu-section" id="menu">
-    <p class="section-label">OUR MENU</p>
-    <h2>SET MENU</h2>
-    <p class="section-description">
-      GRILL HOUSEおすすめのセットメニュー
-    </p>
-
-    <div class="menu-slider">
-      <div class="menu-track">
-
-        <article class="menu-card">
-          <img
-            src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600"
-            alt="チーズバーガーセット"
-          >
-          <div class="menu-info">
-            <h3>チーズバーガーセット</h3>
-            <p>濃厚チーズとジューシーなパティ。ポテトとドリンク付き。</p>
-            <div class="price">¥1,200</div>
-          </div>
-        </article>
-
-        <article class="menu-card">
-          <img
-            src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=600"
-            alt="ポテトセット"
-          >
-          <div class="menu-info">
-            <h3>ポテトセット</h3>
-            <p>サクサクのポテトとお好きなドリンクを楽しめるセット。</p>
-            <div class="price">¥800</div>
-          </div>
-        </article>
-
-        <article class="menu-card">
-          <img
-            src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=600"
-            alt="チキンバーガーセット"
-          >
-          <div class="menu-info">
-            <h3>チキンバーガーセット</h3>
-            <p>香ばしいチキンと新鮮な野菜を挟んだ人気メニュー。</p>
-            <div class="price">¥1,000</div>
-          </div>
-        </article>
-
-        <article class="menu-card">
-          <img
-            src="https://images.unsplash.com/photo-1553979459-d2229ba7433a?w=600"
-            alt="ダブルバーガーセット"
-          >
-          <div class="menu-info">
-            <h3>ダブルバーガーセット</h3>
-            <p>ボリューム満点。お肉をたっぷり楽しみたい方に。</p>
-            <div class="price">¥1,500</div>
-          </div>
-        </article>
-
-        <article class="menu-card">
-          <img
-            src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=600"
-            alt="スペシャルバーガー"
-          >
-          <div class="menu-info">
-            <h3>スペシャルバーガー</h3>
-            <p>お店自慢のソースで仕上げた特製バーガー。</p>
-            <div class="price">¥1,350</div>
-          </div>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- お店紹介 -->
-  <section class="about" id="about">
-    <p class="section-label">ABOUT US</p>
-    <h2>おいしさへのこだわり</h2>
-
-    <p>
-      GRILL HOUSEは、素材と焼き方にこだわったバーガーショップ。
-      注文を受けてから丁寧に焼き上げ、できたてのおいしさをお届けします。
-      友達とのランチにも、家族でのお食事にもぜひご利用ください。
-    </p>
-
-    <a href="#info" class="btn">店舗情報を見る</a>
-  </section>
-
-  <!-- 店舗情報 -->
-  <section class="info" id="info">
-    <h2>店舗情報</h2>
-
-    <p>
-      店名：GRILL HOUSE<br>
-      営業時間：11:00〜21:00<br>
-      定休日：火曜日<br>
-      住所：東京都渋谷区〇〇 1-2-3
-    </p>
-  </section>
-
-  <!-- フッター -->
+  <!-- =========================
+       フッター
+  ========================= -->
   <footer>
+    <div class="footer-logo">GRILL HOUSE</div>
     <p>&copy; 2026 GRILL HOUSE. All Rights Reserved.</p>
   </footer>
+
+  <script>
+    // =========================
+    // スマホ用ナビゲーション
+    // =========================
+    const menuToggle = document.querySelector(".menu-toggle");
+    const nav = document.querySelector("#main-nav");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = nav.classList.toggle("open");
+
+      menuToggle.setAttribute("aria-expanded", isOpen);
+      menuToggle.setAttribute(
+        "aria-label",
+        isOpen ? "ナビゲーションを閉じる" : "ナビゲーションを開く"
+      );
+
+      menuToggle.textContent = isOpen ? "×" : "☰";
+    });
+
+    // ナビゲーションのリンクを押したら閉じる
+    nav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        nav.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "ナビゲーションを開く");
+        menuToggle.textContent = "☰";
+      });
+    });
+
+    // =========================
+    // スクロールでふわっと表示
+    // =========================
+    const revealElements = document.querySelectorAll(".reveal");
+
+    if ("IntersectionObserver" in window) {
+      const revealObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.12
+        }
+      );
+
+      revealElements.forEach((element) => {
+        revealObserver.observe(element);
+      });
+    } else {
+      revealElements.forEach((element) => {
+        element.classList.add("is-visible");
+      });
+    }
+  </script>
 
 </body>
 </html>
