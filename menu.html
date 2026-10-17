@@ -1,62 +1,1038 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>メニュー | GRILL HOUSE</title>
-<style>
-:root{--red:#b22222;--dark:#222;--cream:#fff8ef;--gold:#d8a64e}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;font-family:Arial,"Noto Sans JP",sans-serif;color:#28231f;background:#fff}
-a{color:inherit}
-.top-menu{position:sticky;top:0;z-index:9999;display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:8px;padding:14px 12px;background:#222;box-shadow:0 3px 10px #0002}
-.top-menu a{color:#fff;text-decoration:none;font-size:15px;font-weight:bold;padding:10px 15px;border-radius:6px;transition:.2s}
-.top-menu a:hover,.top-menu a.active{background:var(--red)}
-.hero{min-height:340px;padding:75px 20px;display:grid;place-items:center;text-align:center;color:#fff;background:linear-gradient(120deg,#241a15dd,#241a15aa),linear-gradient(45deg,#6d2a16,#d28a39)}
-.hero h1{font-size:clamp(2.2rem,6vw,4.5rem);margin:0 0 12px;letter-spacing:.06em}
-.hero p{font-size:1.1rem;max-width:720px;line-height:1.8;margin:0 auto}
-.container{max-width:1100px;margin:auto;padding:42px 20px}
-h2.section-title{text-align:center;font-size:2rem;margin:0 0 12px}
-.lead{text-align:center;line-height:1.8;color:#6c625b;margin:0 auto 28px;max-width:760px}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
-.card{border:1px solid #eee0d5;border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 5px 18px #0000000c}
-.card .visual{height:165px;display:grid;place-items:center;background:linear-gradient(135deg,#f7dfbd,#b95b32);font-size:4rem}
-.card-content{padding:20px}
-.card h3{margin:0 0 8px}
-.card p{line-height:1.7;color:#625951}
-.price{font-size:1.25rem;font-weight:bold;color:var(--red)}
-.btn{display:inline-block;background:var(--red);color:#fff;text-decoration:none;border:0;border-radius:7px;padding:12px 18px;font-weight:bold;cursor:pointer}
-.btn:hover{background:#851717}
-.btn.secondary{background:#333}
-.info-panel{background:var(--cream);border-radius:14px;padding:24px;line-height:1.9}
-footer{background:#222;color:#ddd;text-align:center;padding:24px 16px;margin-top:20px;font-size:.9rem}
-footer a{color:#fff}
-.notice{background:#fff4d9;border-left:4px solid var(--gold);padding:14px 16px;border-radius:6px;line-height:1.7}
-form{display:grid;gap:14px;max-width:650px;margin:0 auto}
-label{font-weight:bold;display:grid;gap:7px}
-input,select,textarea{font:inherit;padding:12px;border:1px solid #d8cec4;border-radius:7px;width:100%}
-@media(max-width:600px){.top-menu{gap:3px;padding:9px 4px}.top-menu a{font-size:13px;padding:8px}.container{padding:30px 15px}.hero{min-height:280px;padding:55px 18px}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>メニュー | GRILL HOUSE</title>
+
+  <style>
+    :root {
+      --red: #b22222;
+      --dark: #222;
+      --cream: #fff8ef;
+      --gold: #d8a64e;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, "Noto Sans JP", sans-serif;
+      color: #28231f;
+      background: #fff;
+    }
+
+    /* 上部ナビゲーション */
+    .top-menu {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 14px 12px;
+      background: #222;
+      box-shadow: 0 3px 10px #0002;
+    }
+
+    .top-menu a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: bold;
+      padding: 10px 15px;
+      border-radius: 6px;
+      transition: 0.2s;
+    }
+
+    .top-menu a:hover,
+    .top-menu a.active {
+      background: var(--red);
+    }
+
+    /* メインタイトル */
+    .hero {
+      padding: 48px 20px;
+      text-align: center;
+      color: #fff;
+      background:
+        linear-gradient(120deg, #241a15dd, #241a15aa),
+        linear-gradient(45deg, #6d2a16, #d28a39);
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin: 0 0 10px;
+      letter-spacing: 0.06em;
+    }
+
+    .hero p {
+      margin: 0;
+      line-height: 1.8;
+    }
+
+    .container {
+      max-width: 1150px;
+      margin: auto;
+      padding: 38px 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      margin: 0 0 10px;
+    }
+
+    .lead {
+      text-align: center;
+      color: #6c625b;
+      line-height: 1.8;
+      margin: 0 auto 26px;
+      max-width: 760px;
+    }
+
+    /* カテゴリー絞り込み */
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .filter-btn,
+    .cart-toggle {
+      border: 1px solid #ddd;
+      background: #fff;
+      border-radius: 999px;
+      padding: 9px 14px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .filter-btn.active,
+    .cart-toggle {
+      background: var(--red);
+      color: #fff;
+      border-color: var(--red);
+    }
+
+    /* 商品一覧 */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      border: 1px solid #eee0d5;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 5px 18px #0000000c;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 24px #0002;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 205px;
+      object-fit: cover;
+      display: block;
+      cursor: pointer;
+      background: #f7dfbd;
+    }
+
+    .product-content {
+      padding: 17px;
+    }
+
+    .product-content h3 {
+      margin: 0 0 7px;
+    }
+
+    .product-content p {
+      color: #625951;
+      line-height: 1.6;
+      min-height: 48px;
+      margin: 8px 0;
+    }
+
+    .price {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--red);
+      margin: 10px 0;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* ボタン */
+    .btn {
+      display: inline-block;
+      background: var(--red);
+      color: #fff;
+      text-decoration: none;
+      border: 0;
+      border-radius: 7px;
+      padding: 11px 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #851717;
+    }
+
+    .btn.secondary {
+      background: #333;
+    }
+
+    /* ショッピングカート */
+    .cart-box {
+      margin-top: 32px;
+      background: var(--cream);
+      border-radius: 14px;
+      padding: 22px;
+      scroll-margin-top: 90px;
+    }
+
+    .cart-box h2 {
+      margin-top: 0;
+    }
+
+    .cart-row {
+      display: grid;
+      grid-template-columns: 1fr auto auto auto;
+      gap: 12px;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #eadfce;
+    }
+
+    .qty-controls {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .qty-controls button {
+      width: 30px;
+      height: 30px;
+      border: 0;
+      border-radius: 6px;
+      cursor: pointer;
+      background: #e8d8c7;
+      font-size: 18px;
+    }
+
+    .cart-total {
+      font-size: 1.3rem;
+      font-weight: bold;
+      text-align: right;
+      margin-top: 18px;
+    }
+
+    .empty {
+      color: #766c63;
+    }
+
+    /* 商品詳細モーダル */
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: #0009;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+    }
+
+    .modal.open {
+      display: flex;
+    }
+
+    .modal-panel {
+      position: relative;
+      max-width: 760px;
+      width: 100%;
+      max-height: 90vh;
+      overflow: auto;
+      background: #fff;
+      border-radius: 16px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .modal-panel img {
+      width: 100%;
+      height: 100%;
+      min-height: 300px;
+      object-fit: cover;
+      background: #f7dfbd;
+    }
+
+    .modal-info {
+      padding: 24px;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      border: 0;
+      background: #222;
+      color: #fff;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      font-size: 20px;
+      cursor: pointer;
+      z-index: 1;
+    }
+
+    /* カート追加時の通知 */
+    .toast {
+      position: fixed;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #222;
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 9px;
+      z-index: 3000;
+      display: none;
+    }
+
+    .toast.show {
+      display: block;
+    }
+
+    /* スクロール表示アニメーション */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    footer {
+      background: #222;
+      color: #ddd;
+      text-align: center;
+      padding: 24px 16px;
+      margin-top: 20px;
+    }
+
+    footer a {
+      color: #fff;
+    }
+
+    /* スマートフォン対応 */
+    @media (max-width: 700px) {
+      .modal-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-panel img {
+        height: 230px;
+        min-height: 0;
+      }
+
+      .cart-row {
+        grid-template-columns: 1fr auto;
+        gap: 8px;
+      }
+
+      .cart-row .line-price {
+        grid-column: 2;
+      }
+
+      .top-menu {
+        gap: 3px;
+        padding: 9px 4px;
+      }
+
+      .top-menu a {
+        font-size: 13px;
+        padding: 8px;
+      }
+
+      .container {
+        padding: 28px 14px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<nav class="top-menu" aria-label="メインナビゲーション">
-<a href="index.html" >ホーム</a>
-<a href="menu.html" class="active">メニュー</a>
-<a href="coupon.html" >クーポン</a>
-<a href="store.html" >店舗情報</a>
-<a href="recruit.html" >採用情報</a>
-</nav>
 
-<header class="hero"><div><h1>MENU</h1><p>人気のグリル料理をお楽しみください。</p></div></header>
-<main class="container"><h2 class="section-title">メニュー</h2><p class="lead">※掲載価格・商品はサンプルです。実際の内容に合わせて変更してください。</p>
-<div class="cards">
-<article class="card"><div class="visual">🥩</div><div class="card-content"><h3>グリルステーキ</h3><p>肉の旨みを閉じ込めて香ばしく焼き上げました。</p><div class="price">¥1,680</div></div></article>
-<article class="card"><div class="visual">🍖</div><div class="card-content"><h3>BBQリブ</h3><p>特製ソースがよく絡む、満足感たっぷりの一皿。</p><div class="price">¥1,480</div></div></article>
-<article class="card"><div class="visual">🍗</div><div class="card-content"><h3>グリルチキン</h3><p>外はパリッと、中はジューシーに仕上げました。</p><div class="price">¥980</div></div></article>
-<article class="card"><div class="visual">🥗</div><div class="card-content"><h3>季節のサラダ</h3><p>グリル料理と相性のよいフレッシュサラダ。</p><div class="price">¥680</div></div></article>
-</div><p style="text-align:center;margin-top:28px"><a class="btn" href="coupon.html">クーポンを確認する</a></p></main>
+  <!-- 上部ナビゲーション -->
+  <nav class="top-menu" aria-label="メインナビゲーション">
+    <a href="index.html">ホーム</a>
+    <a href="menu.html" class="active">メニュー</a>
+    <a href="coupon.html">クーポン</a>
+    <a href="store.html">店舗情報</a>
+    <a href="recruit.html">採用情報</a>
+  </nav>
 
-<footer>© GRILL HOUSE　｜　<a href="index.html">ホームへ戻る</a></footer>
+  <!-- タイトル -->
+  <header class="hero">
+    <h1>GRILL HOUSE MENU</h1>
+    <p>
+      写真を押すと商品詳細を確認できます。<br>
+      お気に入りの商品をカートに追加してみてください。
+    </p>
+  </header>
+
+  <main class="container">
+
+    <h2 class="section-title reveal">メニュー</h2>
+
+    <p class="lead reveal">
+      写真・価格・説明はサンプルです。
+      実際のお店の商品情報に合わせて変更してください。
+    </p>
+
+    <!-- カテゴリーとカートボタン -->
+    <div class="toolbar reveal">
+
+      <div class="filters" aria-label="メニューの絞り込み">
+        <button class="filter-btn active" data-filter="all">
+          すべて
+        </button>
+
+        <button class="filter-btn" data-filter="meat">
+          ステーキ・肉料理
+        </button>
+
+        <button class="filter-btn" data-filter="side">
+          サイドメニュー
+        </button>
+
+        <button class="filter-btn" data-filter="drink">
+          ドリンク
+        </button>
+      </div>
+
+      <button class="cart-toggle" id="jump-cart">
+        🛒 カートを見る (<span id="cart-count">0</span>)
+      </button>
+
+    </div>
+
+    <!-- 商品一覧 -->
+    <section class="products" id="products" aria-label="商品一覧">
+
+      <!-- 商品1 -->
+      <article
+        class="product-card reveal"
+        data-id="steak"
+        data-category="meat"
+        data-name="グリルステーキ"
+        data-price="1680"
+        data-description="肉の旨みを閉じ込め、香ばしく焼き上げた定番のグリルステーキ。"
+      >
+        <img
+          class="product-image"
+          src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=900&q=85"
+          alt="グリルステーキ"
+          loading="lazy"
+        >
+
+        <div class="product-content">
+          <h3>グリルステーキ</h3>
+          <p>香ばしく焼き上げた、肉の旨みたっぷりの一皿。</p>
+          <div class="price">¥1,680</div>
+
+          <div class="card-actions">
+            <button class="btn details-btn">詳細を見る</button>
+            <button class="btn secondary add-btn">購入する</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 商品2 -->
+      <article
+        class="product-card reveal"
+        data-id="ribs"
+        data-category="meat"
+        data-name="BBQリブ"
+        data-price="1480"
+        data-description="特製BBQソースを絡めた、食べ応えのあるポークリブ。"
+      >
+        <img
+          class="product-image"
+          src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=85"
+          alt="BBQリブ"
+          loading="lazy"
+        >
+
+        <div class="product-content">
+          <h3>BBQリブ</h3>
+          <p>特製ソースがよく絡む、満足感たっぷりの一皿。</p>
+          <div class="price">¥1,480</div>
+
+          <div class="card-actions">
+            <button class="btn details-btn">詳細を見る</button>
+            <button class="btn secondary add-btn">購入する</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 商品3 -->
+      <article
+        class="product-card reveal"
+        data-id="chicken"
+        data-category="meat"
+        data-name="グリルチキン"
+        data-price="980"
+        data-description="皮はパリッと、中はジューシーに仕上げたグリルチキン。"
+      >
+        <img
+          class="product-image"
+          src="https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=900&q=85"
+          alt="グリルチキン"
+          loading="lazy"
+        >
+
+        <div class="product-content">
+          <h3>グリルチキン</h3>
+          <p>外はパリッと、中はジューシーに。</p>
+          <div class="price">¥980</div>
+
+          <div class="card-actions">
+            <button class="btn details-btn">詳細を見る</button>
+            <button class="btn secondary add-btn">購入する</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 商品4 -->
+      <article
+        class="product-card reveal"
+        data-id="salad"
+        data-category="side"
+        data-name="季節のサラダ"
+        data-price="680"
+        data-description="季節の野菜を使った、グリル料理にぴったりのサラダ。"
+      >
+        <img
+          class="product-image"
+          src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=85"
+          alt="季節のサラダ"
+          loading="lazy"
+        >
+
+        <div class="product-content">
+          <h3>季節のサラダ</h3>
+          <p>新鮮な野菜をたっぷり使ったサラダ。</p>
+          <div class="price">¥680</div>
+
+          <div class="card-actions">
+            <button class="btn details-btn">詳細を見る</button>
+            <button class="btn secondary add-btn">購入する</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 商品5 -->
+      <article
+        class="product-card reveal"
+        data-id="potato"
+        data-category="side"
+        data-name="フライドポテト"
+        data-price="480"
+        data-description="外はカリッと、中はほくほくの定番サイドメニュー。"
+      >
+        <img
+          class="product-image"
+          src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=900&q=85"
+          alt="フライドポテト"
+          loading="lazy"
+        >
+
+        <div class="product-content">
+          <h3>フライドポテト</h3>
+          <p>みんなでシェアしたい定番サイド。</p>
+          <div class="price">¥480</div>
+
+          <div class="card-actions">
+            <button class="btn details-btn">詳細を見る</button>
+            <button class="btn secondary add-btn">購入する</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 商品6 -->
+      <article
+        class="product-card reveal"
+        data-id="drink"
+        data-category="drink"
+        data-name="ソフトドリンク"
+        data-price="300"
+        data-description="食事に合わせて選べるソフトドリンク。"
+      >
+        <img
+          class="product-image"
+          src="https://images.unsplash.com/photo-1513558161293-cbec8b8b7a8b?auto=format&fit=crop&w=900&q=85"
+          alt="ソフトドリンク"
+          loading="lazy"
+        >
+
+        <div class="product-content">
+          <h3>ソフトドリンク</h3>
+          <p>お食事と一緒に楽しめるドリンク。</p>
+          <div class="price">¥300</div>
+
+          <div class="card-actions">
+            <button class="btn details-btn">詳細を見る</button>
+            <button class="btn secondary add-btn">購入する</button>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- ショッピングカート -->
+    <section class="cart-box reveal" id="cart">
+
+      <h2>🛒 ショッピングカート</h2>
+
+      <p class="empty" id="cart-empty">
+        カートは空です。商品を「購入する」ボタンで追加できます。
+      </p>
+
+      <div id="cart-items"></div>
+
+      <div class="cart-total">
+        合計：<span id="cart-total">¥0</span>
+      </div>
+
+      <div style="display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:16px">
+
+        <button class="btn secondary" id="clear-cart">
+          カートを空にする
+        </button>
+
+        <button class="btn" id="checkout">
+          購入手続きへ
+        </button>
+
+      </div>
+
+      <p class="lead" style="margin-top:14px;margin-bottom:0">
+        ※このカートは画面上のデモです。決済や注文送信機能はありません。
+      </p>
+
+    </section>
+
+  </main>
+
+  <!-- フッター -->
+  <footer>
+    <p>© GRILL HOUSE</p>
+
+    <p>
+      <a href="index.html">ホーム</a> ｜
+      <a href="coupon.html">クーポン</a> ｜
+      <a href="store.html">店舗情報</a> ｜
+      <a href="recruit.html">採用情報</a>
+    </p>
+  </footer>
+
+  <!-- 商品詳細画面 -->
+  <div
+    class="modal"
+    id="product-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-title"
+  >
+    <div class="modal-panel">
+
+      <button
+        class="close-modal"
+        id="close-modal"
+        aria-label="閉じる"
+      >
+        ×
+      </button>
+
+      <img id="modal-image" src="" alt="">
+
+      <div class="modal-info">
+        <h2 id="modal-title"></h2>
+        <p id="modal-description"></p>
+        <div class="price" id="modal-price"></div>
+
+        <button class="btn" id="modal-add">
+          購入する
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- カート操作の通知 -->
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+    // 金額を円表示にする
+    const yen = n => "¥" + n.toLocaleString("ja-JP");
+
+    // カートの商品を保存する
+    const cart = {};
+
+    const cards = [
+      ...document.querySelectorAll(".product-card")
+    ];
+
+    const modal = document.getElementById("product-modal");
+
+    let selectedProduct = null;
+    let toastTimer;
+
+    // 商品カードから商品情報を取得
+    function productFromCard(card) {
+      return {
+        id: card.dataset.id,
+        name: card.dataset.name,
+        price: Number(card.dataset.price),
+        description: card.dataset.description,
+        image: card.querySelector("img").src,
+        alt: card.querySelector("img").alt
+      };
+    }
+
+    // 操作結果の通知を表示
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+
+      toast.textContent = message;
+      toast.classList.add("show");
+
+      clearTimeout(toastTimer);
+
+      toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2200);
+    }
+
+    // 商品をカートに追加
+    function addToCart(product) {
+      if (!cart[product.id]) {
+        cart[product.id] = {
+          ...product,
+          quantity: 0
+        };
+      }
+
+      cart[product.id].quantity++;
+
+      renderCart();
+
+      showToast(product.name + "をカートに追加しました");
+    }
+
+    // 数量を変更
+    function changeQuantity(id, amount) {
+      if (!cart[id]) return;
+
+      cart[id].quantity += amount;
+
+      if (cart[id].quantity <= 0) {
+        delete cart[id];
+      }
+
+      renderCart();
+    }
+
+    // カートの表示を更新
+    function renderCart() {
+      const items = document.getElementById("cart-items");
+      const empty = document.getElementById("cart-empty");
+
+      const entries = Object.values(cart);
+
+      items.innerHTML = "";
+
+      empty.style.display = entries.length ? "none" : "block";
+
+      let count = 0;
+      let total = 0;
+
+      entries.forEach(item => {
+        count += item.quantity;
+        total += item.price * item.quantity;
+
+        const row = document.createElement("div");
+        row.className = "cart-row";
+
+        // 商品名
+        const name = document.createElement("strong");
+        name.textContent = item.name;
+
+        // 数量変更ボタン
+        const controls = document.createElement("div");
+        controls.className = "qty-controls";
+
+        const minus = document.createElement("button");
+        minus.type = "button";
+        minus.textContent = "−";
+        minus.setAttribute(
+          "aria-label",
+          item.name + "を1個減らす"
+        );
+
+        minus.addEventListener("click", () => {
+          changeQuantity(item.id, -1);
+        });
+
+        const qty = document.createElement("span");
+        qty.textContent = item.quantity + "個";
+
+        const plus = document.createElement("button");
+        plus.type = "button";
+        plus.textContent = "+";
+        plus.setAttribute(
+          "aria-label",
+          item.name + "を1個増やす"
+        );
+
+        plus.addEventListener("click", () => {
+          changeQuantity(item.id, 1);
+        });
+
+        controls.append(minus, qty, plus);
+
+        // 商品ごとの小計
+        const line = document.createElement("strong");
+        line.className = "line-price";
+        line.textContent = yen(item.price * item.quantity);
+
+        // 商品削除ボタン
+        const remove = document.createElement("button");
+        remove.type = "button";
+        remove.className = "btn secondary";
+        remove.textContent = "削除";
+
+        remove.addEventListener("click", () => {
+          delete cart[item.id];
+          renderCart();
+        });
+
+        row.append(name, controls, line, remove);
+        items.appendChild(row);
+      });
+
+      // カートの商品数と合計金額を更新
+      document.getElementById("cart-count").textContent = count;
+      document.getElementById("cart-total").textContent = yen(total);
+    }
+
+    // 商品詳細を開く
+    function openDetails(card) {
+      selectedProduct = productFromCard(card);
+
+      document.getElementById("modal-image").src =
+        selectedProduct.image;
+
+      document.getElementById("modal-image").alt =
+        selectedProduct.alt;
+
+      document.getElementById("modal-title").textContent =
+        selectedProduct.name;
+
+      document.getElementById("modal-description").textContent =
+        selectedProduct.description;
+
+      document.getElementById("modal-price").textContent =
+        yen(selectedProduct.price);
+
+      modal.classList.add("open");
+
+      document.getElementById("close-modal").focus();
+    }
+
+    // 商品詳細を閉じる
+    function closeDetails() {
+      modal.classList.remove("open");
+    }
+
+    // 各商品のボタンを設定
+    cards.forEach(card => {
+      // 写真を押すと詳細表示
+      card.querySelector(".product-image").addEventListener(
+        "click",
+        () => openDetails(card)
+      );
+
+      // 詳細ボタンでも詳細表示
+      card.querySelector(".details-btn").addEventListener(
+        "click",
+        () => openDetails(card)
+      );
+
+      // 購入ボタンでカートに追加
+      card.querySelector(".add-btn").addEventListener(
+        "click",
+        () => addToCart(productFromCard(card))
+      );
+    });
+
+    // 詳細画面から購入
+    document.getElementById("modal-add").addEventListener(
+      "click",
+      () => {
+        if (selectedProduct) {
+          addToCart(selectedProduct);
+        }
+
+        closeDetails();
+      }
+    );
+
+    // 詳細画面を閉じる操作
+    document.getElementById("close-modal").addEventListener(
+      "click",
+      closeDetails
+    );
+
+    modal.addEventListener("click", event => {
+      if (event.target === modal) {
+        closeDetails();
+      }
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") {
+        closeDetails();
+      }
+    });
+
+    // カテゴリーで商品を絞り込む
+    document.querySelectorAll(".filter-btn").forEach(button => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll(".filter-btn").forEach(b => {
+          b.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        const filter = button.dataset.filter;
+
+        cards.forEach(card => {
+          const visible =
+            filter === "all" ||
+            card.dataset.category === filter;
+
+          card.style.display = visible ? "" : "none";
+        });
+      });
+    });
+
+    // カートボタンを押すとカートまでスクロール
+    document.getElementById("jump-cart").addEventListener(
+      "click",
+      () => {
+        document.getElementById("cart").scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+    );
+
+    // カートを空にする
+    document.getElementById("clear-cart").addEventListener(
+      "click",
+      () => {
+        Object.keys(cart).forEach(key => {
+          delete cart[key];
+        });
+
+        renderCart();
+
+        showToast("カートを空にしました");
+      }
+    );
+
+    // 購入手続きボタン
+    document.getElementById("checkout").addEventListener(
+      "click",
+      () => {
+        if (!Object.keys(cart).length) {
+          showToast("先に商品をカートに追加してください");
+          return;
+        }
+
+        alert(
+          "これはデモのカートです。\n" +
+          "実際の注文・決済機能を使うには、" +
+          "注文を受け付ける仕組みの接続が必要です。"
+        );
+      }
+    );
+
+    // スクロールに合わせて要素をふわっと表示
+    const revealObserver = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    document.querySelectorAll(".reveal").forEach(el => {
+      revealObserver.observe(el);
+    });
+  </script>
+
 </body>
 </html>
