@@ -1,0 +1,307 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>加藤光一郎のホームページ</title>
+
+    <style>
+        /* ページ全体 */
+        body {
+            font-family: "Meiryo", sans-serif;
+            background: linear-gradient(135deg, #eaf4ff, #fdf2f8);
+            color: #333;
+            margin: 0;
+            padding: 0 0 120px;
+            line-height: 1.8;
+        }
+
+        /* ヘッダー */
+        header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 30px;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            color: #d6eaf8;
+            margin: 8px 0 0;
+        }
+
+        /* メインコンテンツ */
+        main {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* 各セクション */
+        section {
+            background-color: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 14px;
+            box-shadow: 0 4px 14px rgba(44, 62, 80, 0.10);
+            border-top: 4px solid #85c1e9;
+        }
+
+        /* 見出し */
+        h2 {
+            color: #2c3e50;
+            border-left: 5px solid #3498db;
+            border-bottom: 2px solid #d6eaf8;
+            padding: 0 0 8px 12px;
+            margin-top: 0;
+        }
+
+        p {
+            margin-bottom: 18px;
+        }
+
+        /* 名前・重要な言葉：青 */
+        .highlight {
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        /* 趣味：オレンジ */
+        .hobby {
+            color: #e67e22;
+            font-weight: bold;
+        }
+
+        /* 大学・出身地：紫 */
+        .school {
+            color: #8e44ad;
+            font-weight: bold;
+        }
+
+        /* 音楽・アーティスト：ピンク */
+        .music {
+            color: #e84393;
+            font-weight: bold;
+        }
+
+        /* 長所：赤 */
+        .strength {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        /* IT・将来の目標：青緑 */
+        .future {
+            color: #008b8b;
+            font-weight: bold;
+        }
+
+        /* スキル */
+        .skill {
+            display: inline-block;
+            color: #218838;
+            background-color: #e2f5e8;
+            padding: 4px 12px;
+            margin: 4px;
+            border-radius: 8px;
+            font-weight: bold;
+            border: 1px solid #b8e6c5;
+            transition: 0.3s;
+        }
+
+        .skill:hover {
+            background-color: #b9eac8;
+            transform: translateY(-2px);
+        }
+
+        /* スキルの説明 */
+        .skill-text {
+            color: #218838;
+            font-weight: bold;
+        }
+
+        /* フッター */
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            box-sizing: border-box;
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+        }
+
+        footer p {
+            margin: 3px 0;
+        }
+
+        footer a {
+            color: #85c1e9;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+
+        footer a:hover {
+            color: #f5b7b1;
+            text-decoration: underline;
+        }
+
+        /* スマートフォン対応 */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 23px;
+            }
+
+            header {
+                padding: 25px 15px;
+            }
+
+            main {
+                padding: 0 12px;
+                margin: 20px auto;
+            }
+
+            section {
+                padding: 18px;
+            }
+
+            footer {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ヘッダー -->
+    <header>
+        <h1>加藤光一郎のホームページ</h1>
+        <p>プロフィール・趣味・学習について</p>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main>
+
+        <!-- あいさつ -->
+        <section>
+            <h2>あいさつ</h2>
+
+            <p>
+                はじめまして！
+                このページを見ていただきありがとうございます。
+            </p>
+
+            <p>
+                このホームページでは、自分の
+                <span class="highlight">プロフィール</span>や
+                <span class="hobby">趣味</span>、
+                現在取り組んでいることについて紹介します。
+            </p>
+        </section>
+
+        <!-- 自己紹介 -->
+        <section>
+            <h2>自己紹介</h2>
+
+            <p>
+                はじめまして！
+                <span class="highlight">加藤光一郎</span>です。
+                2005年11月21日生まれで、
+                <span class="school">愛知県あま市</span>出身、
+                <span class="school">南山大学</span>に所属しています。
+            </p>
+
+            <p>
+                趣味は
+                <span class="hobby">筋トレ</span>と
+                <span class="hobby">ゲーム</span>です。
+                ゲームは
+                <span class="hobby">VALORANT</span>や
+                <span class="hobby">Overwatch</span>などの
+                PCゲームをよくプレイしています。
+            </p>
+
+            <p>
+                音楽は
+                <span class="music">J-POP</span>が好きで、
+                特に
+                <span class="music">Vaundy</span>の楽曲をよく聴いています。
+                音楽を聴いてリラックスする時間も好きです。
+            </p>
+
+            <p>
+                自分の長所は
+                <span class="strength">感受性が高いところ</span>です。
+                音楽や作品からさまざまな感情を受け取ったり、
+                物事を自分なりに感じ取ったりすることを大切にしています。
+            </p>
+
+            <p>
+                休日は家でゆっくり過ごすことが多く、
+                好きなゲームをしたり音楽を聴いたりして、
+                自分の時間を楽しんでいます。
+            </p>
+        </section>
+
+        <!-- 学習中のスキル -->
+        <section>
+            <h2>学習中のスキル</h2>
+
+            <p>
+                現在はIT業界を目指して、
+                <span class="future">プログラミングの学習</span>に取り組んでいます。
+            </p>
+
+            <p>
+                学習している技術は以下の3つです。
+            </p>
+
+            <span class="skill">HTML</span>
+            <span class="skill">CSS</span>
+            <span class="skill">JavaScript</span>
+
+            <p>
+                それぞれの技術を少しずつ学びながら、
+                自分でホームページを作成することにも挑戦しています。
+            </p>
+        </section>
+
+        <!-- これからの目標 -->
+        <section>
+            <h2>これからの目標</h2>
+
+            <p>
+                これからも
+                <span class="future">ITに関する知識や技術</span>を身につけ、
+                できることを少しずつ増やしていきたいです。
+            </p>
+
+            <p>
+                学習を続けながら、さまざまなことに挑戦し、
+                将来は人々の生活に役立つものを作れるようになりたいです。
+            </p>
+        </section>
+
+    </main>
+
+    <!-- フッター -->
+    <footer>
+        <p>&copy; 2026 加藤光一郎</p>
+        <p>
+            <a href="mailto:example@example.com">メール</a>
+            <a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </p>
+    </footer>
+
+</body>
+</html>
